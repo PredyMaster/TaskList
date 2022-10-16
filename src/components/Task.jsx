@@ -13,7 +13,6 @@ const Task = ({item, handleDragging}) => {
     const printPriority = (priority) => {
         let priorityIcon = ''
 
-        console.log(priority, "priority")
         priorityIcon = priority.map( value => {
             let icon = '❗'
             return (icon.repeat(value))
@@ -32,8 +31,6 @@ const Task = ({item, handleDragging}) => {
             case 'completadas' : priorityClass = 'tasksCompletedTodoBackground'; break;
         }
 
-        console.log(priorityClass, " status 💜" )
-
         return priorityClass;
     }
 
@@ -45,6 +42,8 @@ const Task = ({item, handleDragging}) => {
             onDragEnd={handleDragEnd}
         >
             <p className='task'>{item.content}</p>
+            {/* <p className='task'>{tasks.task}</p> */}
+
             <span className='priorityIcon'>{printPriority([item.priority])}</span>
         </div>
     )

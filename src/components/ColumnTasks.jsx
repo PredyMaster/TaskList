@@ -3,7 +3,10 @@ import Task from './Task'
 //import { Status } from '../interfaces'
 
 
-const ColumnTask = ({status, items = [], isDragging, handleDragging, handleUpdateList}) => {
+const ColumnTask = ({items = [], status, tasks, isDragging, handleDragging, handleUpdateList}) => {
+
+    console.log(" 💀 Render 💀 ")
+    console.log(tasks, " las tasks en COLUMNTASKS" )
 
     const handleDragOver = e => e.preventDefault()
 
@@ -15,27 +18,10 @@ const ColumnTask = ({status, items = [], isDragging, handleDragging, handleUpdat
     }
 
     const setColorColumn = () => {
-
-        console.log(status, " el status ")
-        console.log(items, " el item ")
-
-        // .tasksCompletedTodo{
-        //     border-bottom: 0.1rem solid gray;
-        //   }
-        //   .tasksStartedTitle{
-        //     border-bottom: 0.1rem solid #00aaff;
-        //   }
-        //   .tasksCompletedTodo{
-        //     border-bottom: 0.1rem solid green;
-        //   }
-
-
-
         switch(status){
             case 'por hacer' : return 'tasksTodo'; break;
             case 'comenzadas' : return 'tasksStartedTitle'; break;
-            case 'completadas' : return 'tasksCompletedTodo'; break; 
-        return
+            case 'completadas' : return 'tasksCompletedTodo'; break;  
         }
     }
 
@@ -50,6 +36,8 @@ const ColumnTask = ({status, items = [], isDragging, handleDragging, handleUpdat
             <h2 className={setColorColumn()}>{'Tareas ' + status}</h2>
             <div className={`layaoutNormal ${isDragging ? 'layoutDragging' : ''}`}>
 
+                {/* ❗❗❗ Hacer el map con el "tasks ❗❗❗ */}
+
                 {
                     items.map(item => {
                         // {status === item.status && 
@@ -61,6 +49,7 @@ const ColumnTask = ({status, items = [], isDragging, handleDragging, handleUpdat
                                         key={item.id} 
                                         item={item} 
                                         handleDragging={handleDragging}
+                                        tasks={tasks}
                                     />
                         }
 

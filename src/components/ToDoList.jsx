@@ -5,11 +5,13 @@ import { taskValues } from "../assets"
 
 const allStatus = ['por hacer', 'comenzadas', 'completadas']
 
-const ToDoList = () => {
+const ToDoList = ({ tasks }) => {
     const [isDragging, setIsDragging] = useState(false)
     const [listItems, setListItems] = useState(taskValues)
 
     //console.log(listItems, " listItems")
+
+    console.log(tasks, " las tasks en TODOLIST")
 
     const handleDragging = (dragging) => setIsDragging(dragging)
 
@@ -17,10 +19,10 @@ const ToDoList = () => {
         const idSelected = Number(id)
         let taskSelected = listItems.find(item => item.id === idSelected)
 
-        
 
-        if(taskSelected && taskSelected.status !== status){
-            
+
+        if (taskSelected && taskSelected.status !== status) {
+
             taskSelected.status = status
             let newArray = [...listItems]
             newArray[idSelected] = taskSelected
@@ -31,14 +33,15 @@ const ToDoList = () => {
 
     }
 
-    return(
+    return (
         <div className="grid">
             {
-                allStatus.map( (status, index) => {                    
+                allStatus.map((status, index) => {
                     return <ColumnTask
-                        key={ 'Col' + index}
+                        key={'Col' + index}
                         items={listItems}
                         status={status}
+                        tasks={tasks}
 
                         isDragging={isDragging}
                         handleDragging={handleDragging}
